@@ -1,0 +1,150 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">
+        Check your answers before sending your application
+      </h1>
+
+      <dl class="govuk-summary-list">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            How many balls can you juggle?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['juggleBalls'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="juggling-balls">Change<span class="govuk-visually-hidden"> how many balls can you juggle?</span></a>
+          </dd>
+        </div>
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Can you juggle anything else?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['juggleElse'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="juggling-else">Change<span class="govuk-visually-hidden"> what else can you juggle?</span></a>
+          </dd>
+        </div>
+
+        <!-- Only show these rows if a user can juggle anything else -->
+        {% if data['juggleElse'] == "Yes" %}
+        
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What else can you juggle?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['juggleClubs'] %}
+                {{ data['juggleClubs'] }}<br>
+              {% endif %}
+              {% if data['juggleRings'] %}
+                {{ data['juggleRings'] }}<br>
+              {% endif %}
+              {% if data['juggleDifferent'] %} 
+                {{ data['juggleDifferent'] }}
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="juggling-else-details">Change<span class="govuk-visually-hidden"> what else can you juggle</span></a>
+            </dd>
+          </div>
+
+          <!-- Only show this row if a user selected the relevant checkbox -->
+          {% if data['juggleClubs'] %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                How many clubs can you juggle?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['clubsNumber'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="juggle-clubs">Change<span class="govuk-visually-hidden"> how many clubs can you juggle?</span></a>
+              </dd>
+            </div>
+          {% endif %}
+
+          <!-- Only show this row if a user selected the relevant checkbox -->
+          {% if data['juggleRings'] %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                How many rings can you juggle?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['ringsNumber'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="juggle-rings">Change<span class="govuk-visually-hidden"> how many rings can you juggle?</span></a>
+              </dd>
+            </div>
+          {% endif %}
+
+          <!-- Only show this row if a user selected the relevant checkbox -->
+          {% if data['juggleRings'] %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                What else can you juggle?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['juggleMore'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="juggle-more">Change<span class="govuk-visually-hidden"> what else can you juggle?</span></a>
+              </dd>
+            </div>
+          {% endif %}
+
+        {% endif %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What is your most impressive juggling trick?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['moreDetail'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="juggling-trick">Change<span class="govuk-visually-hidden"> what is your most impressive juggling trick?</span></a>
+          </dd>
+        </div>
+        
+      </dl>
+
+      <h2 class="govuk-heading-m">
+        Now send your application
+      </h2>
+
+      <p>
+        By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.
+      </p>
+
+      <form action="/confirmation" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Accept and send"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

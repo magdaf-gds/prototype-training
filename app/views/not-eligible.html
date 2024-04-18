@@ -1,0 +1,36 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="You are not eligible for a juggling licence" %}
+
+{% block pageTitle %}
+  {{ pageName }} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {{ pageName }}
+      </h1>
+
+      <p>
+        Based on your answers, you are not eligible for a juggling licence.
+      </p>
+
+      <p>
+        You can try learning a juggling trick and <a href="start">come back to to the service</a> later.
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

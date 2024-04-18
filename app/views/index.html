@@ -2,18 +2,61 @@
 
 {% set pageName="Home" %}
 
+{% block pageTitle %}
+  Prototype tutorial – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the index page -->
+  {{ govukHeader() }}
+{% endblock %}
+
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
-
     <h1 class="govuk-heading-xl">
-      {{ serviceName }}
+      Prototype tutorial
     </h1>
 
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+    <h2 class="govuk-heading-l">
+      {{ serviceName }}
+    </h2>
+
+    <p>
+      Prototype last updated in February 2024.
+    </p>
+
+    {{ govukButton({
+      text: "Go to the prototype",
+      href: "start"
+    }) }}
+
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+
+    <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+      <h2 class="govuk-heading-m" id="subsection-title">
+        Useful links
+      </h2>
+      <nav role="navigation" aria-labelledby="subsection-title">
+        <ul class="govuk-list govuk-!-font-size-16">
+          <li>
+            <a href="https://prototype-kit.service.gov.uk/docs/tutorials-and-guides">
+              Prototype Kit tutorials
+            </a>
+          </li>
+          <li>
+            <a href="https://design-system.service.gov.uk/">
+              GOV.UK Design System
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
   </div>
 </div>
 

@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="How many rings can you juggle?" %}
+
+{% block pageTitle %}
+  {{ pageName }} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="rings-answer" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "How many rings can you juggle?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          classes: "govuk-input--width-10",
+          id: "rings-number",
+          name: "ringsNumber",
+          value: data['ringsNumber']
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
